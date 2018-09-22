@@ -10,9 +10,11 @@ public class Output {
     }
 
     public void print(Collection<String> bookDetails) {
+        System.out.println("The list of books are: \n");
         for(String bookDetail : bookDetails) {
             System.out.println(bookDetail);
         }
+        System.out.println();
     }
 
 }

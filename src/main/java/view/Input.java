@@ -11,7 +11,7 @@ public class Input {
         this.scanner = new Scanner(System.in);
     }
 
-    public int getUserInput(){
-        return scanner.nextInt();
+    public String getUserInput(){
+        return scanner.nextLine();
     }
 }

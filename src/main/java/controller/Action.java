@@ -1,32 +1,34 @@
 package controller;
 
+import controller.commands.CheckoutBooksCommand;
+import controller.commands.ListBooksCommand;
+import controller.commands.QuitCommand;
 import model.Library;
+import view.Input;
 import view.Output;
 
 // Represents menu and the associated functions with it
 public enum Action {
 
-    ListBooks("List the books:", 1) {
-        @Override
-        void perform(Library library, Output output) {
-            output.print(library.getBookDetails());
-        }
-    },
+    ListBooks("List the books", new ListBooksCommand()),
 
-    Quit("Quit.", 2) {
-        @Override
-        void perform(Library library, Output output) {
+    Checkout("Checkout books", new CheckoutBooksCommand()) ,
 
-        }
-    };
+    Quit("Quit", new QuitCommand());
 
-    public int number;
-    public String description;
+    private String description;
+    private ICommand action;
 
-    Action(String description, int number) {
+    Action(String description, ICommand action) {
         this.description = description;
-        this.number = number;
+        this.action = action;
     }
 
-    abstract void perform(Library library, Output output);
+    public String getDescription() {
+        return description;
+    }
+
+    public void perform(Library library, Output output, Input input){
+        action.perform(library, output, input);
+    }
 }

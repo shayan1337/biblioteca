@@ -19,15 +19,12 @@ public class LibraryManagementSystem {
         this.input = input;
     }
 
-    public void printBookList() {
-        Action.ListBooks.perform(library, output);
-    }
-
     public void printMenu() {
         Action actions[] = Action.values();
         for (int actionIndex = 0; actionIndex < actions.length; actionIndex++) {
-            output.print(String.valueOf(actionIndex + 1).concat(".").concat(actions[actionIndex].description));
+            output.print(String.valueOf(actionIndex + 1).concat(".").concat(actions[actionIndex].getDescription()));
         }
+        System.out.println();
         printAskForInputFromCustomerMessage();
     }
 
@@ -49,16 +46,16 @@ public class LibraryManagementSystem {
     }
 
     public void interactWithUser() {
-        int userInput;
+        String userInput;
         do {
             printMenu();
             userInput = input.getUserInput();
-            if(isInvalidInput(userInput)) {
+            if(isInvalidInput(Integer.parseInt(userInput))) {
                 printInvalidChoiceMessage();
                 continue;
             }
-            Action.values()[userInput - 1].perform(library, output);
-        } while (userInput - 1 != Action.valueOf("Quit").ordinal());
+            Action.values()[Integer.parseInt(userInput) - 1].perform(library, output, input);
+        } while (Integer.parseInt(userInput) - 1 != Action.valueOf("Quit").ordinal());
     }
 }
 
