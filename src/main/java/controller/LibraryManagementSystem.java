@@ -20,6 +20,7 @@ public class LibraryManagementSystem {
     }
 
     public void printMenu() {
+        output.print(Message.HORIZONTAL_LINE);
         Action actions[] = Action.values();
         for (int actionIndex = 0; actionIndex < actions.length; actionIndex++) {
             output.print(String.valueOf(actionIndex + 1).concat(".").concat(actions[actionIndex].getDescription()));

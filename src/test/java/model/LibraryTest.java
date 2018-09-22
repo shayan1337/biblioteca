@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
 
@@ -64,5 +62,24 @@ public class LibraryTest {
     @Test
     void testCheckoutBook3() {
         assertNull(library.checkoutBook("Odyssey"));
+    }
+
+    @DisplayName("should be able to return a book that was checked out")
+    @Test
+    void testReturnBook1() {
+        library.checkoutBook("Hamlet");
+        assertTrue(library.returnBook("Hamlet"));
+    }
+
+    @DisplayName("should not be able to return a book that does not belong to the library")
+    @Test
+    void testReturnBook2() {
+        assertFalse(library.returnBook("Odyssey"));
+    }
+
+    @DisplayName("should not be able to return a book was not checked out in the first place")
+    @Test
+    void testReturnBook3() {
+        assertFalse(library.returnBook("Hamlet"));
     }
 }

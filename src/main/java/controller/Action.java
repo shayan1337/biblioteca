@@ -3,6 +3,7 @@ package controller;
 import controller.commands.CheckoutBooksCommand;
 import controller.commands.ListBooksCommand;
 import controller.commands.QuitCommand;
+import controller.commands.ReturnBookCommand;
 import model.Library;
 import view.Input;
 import view.Output;
@@ -13,6 +14,8 @@ public enum Action {
     ListBooks("List the books", new ListBooksCommand()),
 
     Checkout("Checkout books", new CheckoutBooksCommand()) ,
+
+    Return("Return books", new ReturnBookCommand()),
 
     Quit("Quit", new QuitCommand());
 
