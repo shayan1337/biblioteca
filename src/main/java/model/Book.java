@@ -2,40 +2,40 @@ package model;
 
 import java.util.Objects;
 
-// Represents a book with its title, author, and year of publication
-public class Book {
+// Represents a library item with title, person, and year
+public class Item {
 
     private final Title title;
-    private final Author author;
-    private final Year yearOfPublication;
+    private final Person person;
+    private final Year year;
 
-    public Book(Title title, Author author, Year yearOfPublication) {
+    public Item(Title title, Person person, Year year) {
         this.title = title;
-        this.author = author;
-        this.yearOfPublication = yearOfPublication;
+        this.person = person;
+        this.year = year;
     }
 
-    boolean hasTitle(String bookTitle) {
-        return title.toString().equalsIgnoreCase(bookTitle);
+    boolean hasTitle(String title) {
+        return this.title.toString().equalsIgnoreCase(title);
     }
 
     @Override
     public String toString() {
-        return title.toString() + "\t" + author.toString() + "\t" + yearOfPublication.toString();
+        return title.toString() + "\t" + person.toString() + "\t" + year.toString();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
-        return Objects.equals(title, book.title) &&
-                Objects.equals(author, book.author) &&
-                Objects.equals(yearOfPublication, book.yearOfPublication);
+        Item item = (Item) o;
+        return Objects.equals(title, item.title) &&
+                Objects.equals(person, item.person) &&
+                Objects.equals(year, item.year);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, yearOfPublication);
+        return Objects.hash(title, person, year);
     }
 }
