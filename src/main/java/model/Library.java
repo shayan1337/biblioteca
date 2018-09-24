@@ -5,41 +5,44 @@ import java.util.Collection;
 
 public class Library {
 
-    private Collection<Book> allBooks;
-    private Collection<Book> availableBooks;
+    private Collection<Item> checkedOutItems;
+    private Collection<Item> availableItems;
 
-    public Library(Collection<Book> allBooks) {
-        this.allBooks = allBooks;
-        this.availableBooks = new ArrayList<>(allBooks);
+    public Library(Collection<Item> availableItems) {
+        this.checkedOutItems = new ArrayList<>();
+        this.availableItems = availableItems;
     }
 
-    public Collection<String> getBookDetails() {
-        Collection<String> bookTitles = new ArrayList<>();
+    public Collection<String> getDetails(final ItemType itemType) {
+        Collection<String> itemDetails = new ArrayList<>();
 
-        for(Book book : availableBooks) {
-            bookTitles.add(book.toString());
-        }
-
-        return bookTitles;
-    }
-
-    public Book checkoutBook(String bookTitle) {
-        Book checkedOutBook = null;
-
-        for(Book book : availableBooks) {
-            if(book.hasTitle(bookTitle)) {
-                checkedOutBook = book;
+        for (Item item : availableItems) {
+            if (item.getItemType() == itemType) {
+                itemDetails.add(item.toString());
             }
         }
-        availableBooks.remove(checkedOutBook);
-        return checkedOutBook;
+        return itemDetails;
     }
 
-    public boolean returnBook(String bookTitle) {
+    public Item checkoutItem(String title, ItemType itemType) {
+        Item checkedOutItem = null;
 
-        for(Book book : allBooks) {
-            if(book.hasTitle(bookTitle) && !availableBooks.contains(book)) {
-                availableBooks.add(book);
+        for (Item item : availableItems) {
+            if (item.getItemType() == itemType && item.hasTitle(title)) {
+                checkedOutItem = item;
+            }
+        }
+        checkedOutItems.add(checkedOutItem);
+        availableItems.remove(checkedOutItem);
+        return checkedOutItem;
+    }
+
+    public boolean returnItem(String title, ItemType itemType) {
+
+        for (Item item : checkedOutItems) {
+            if (item.getItemType() == itemType && item.hasTitle(title) && !availableItems.contains(item)) {
+                availableItems.add(item);
+                checkedOutItems.remove(item);
                 return true;
             }
         }

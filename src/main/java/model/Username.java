@@ -2,29 +2,29 @@ package model;
 
 import java.util.Objects;
 
-public class Rating {
+public class Username {
 
     private final String value;
 
-    public Rating(String value) {
+    public Username(String value) {
         this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rating rating = (Rating) o;
-        return Objects.equals(value, rating.value);
+        Username username1 = (Username) o;
+        return Objects.equals(value, username1.value);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

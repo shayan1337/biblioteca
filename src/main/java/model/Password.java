@@ -2,29 +2,29 @@ package model;
 
 import java.util.Objects;
 
-public class Rating {
+public class Password {
 
     private final String value;
 
-    public Rating(String value) {
+    public Password(String value) {
         this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rating rating = (Rating) o;
-        return Objects.equals(value, rating.value);
+        Password password = (Password) o;
+        return Objects.equals(value, password.value);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

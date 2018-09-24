@@ -2,6 +2,7 @@ package controller.commands;
 
 import common.Message;
 import controller.ICommand;
+import model.ItemType;
 import model.Library;
 import view.Input;
 import view.Output;
@@ -12,10 +13,10 @@ public class CheckoutBooksCommand implements ICommand {
         output.print(Message.BOOK_CHECKOUT_MESSAGE);
         String bookTitle = input.getUserInput();
 
-        if (library.checkoutBook(bookTitle) == null) {
-            output.print(Message.UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        if (library.checkoutItem(bookTitle, ItemType.Book) == null) {
+            output.print(Message.UNSUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
         } else {
-            output.print(Message.SUCCESSFUL_CHECKOUT_MESSAGE);
+            output.print(Message.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE);
         }
     }
 }

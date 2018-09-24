@@ -15,7 +15,7 @@ public class InputTest {
     void testUserInput_3() {
         setSystem("3\n");
         Input input = new Input();
-        assertEquals(3, input.getUserInput());
+        assertEquals("3", input.getUserInput());
     }
 
     @DisplayName("expect user input to equal 5")
@@ -23,7 +23,7 @@ public class InputTest {
     void testUserInput_5() {
         setSystem("5\n");
         Input input = new Input();
-        assertEquals(5, input.getUserInput());
+        assertEquals("5", input.getUserInput());
     }
 
     private void setSystem(String string) {

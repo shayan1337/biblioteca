@@ -9,9 +9,8 @@ public class Output {
         System.out.println(message);
     }
 
-    public void print(Collection<String> bookDetails) {
-        System.out.println("The list of books are: \n");
-        for(String bookDetail : bookDetails) {
+    public void print(Collection<String> details) {
+        for(String bookDetail : details) {
             System.out.println(bookDetail);
         }
         System.out.println();
