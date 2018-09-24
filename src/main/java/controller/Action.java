@@ -1,6 +1,7 @@
 package controller;
 
 import controller.commands.*;
+import model.ItemType;
 import model.Library;
 import view.Input;
 import view.Output;
@@ -8,17 +9,17 @@ import view.Output;
 // Represents menu and the associated functions with it
 public enum Action {
 
-    ListBooks("List the books", new ListBooksCommand()),
+    ListBooks("List the books", new ListItemsCommand(ItemType.Book)),
 
-    ListMovies("List the movies", new ListMoviesCommand()),
+    ListMovies("List the movies", new ListItemsCommand(ItemType.Movie)),
 
-    CheckoutBooks("Checkout books", new CheckoutBooksCommand()),
+    CheckoutBooks("Checkout books", new CheckoutItemsCommand(ItemType.Book)),
 
-    CheckoutMovies("Checkout movies", new CheckoutMoviesCommand()),
+    CheckoutMovies("Checkout movies", new CheckoutItemsCommand(ItemType.Movie)),
 
-    ReturnBooks("Return books", new ReturnBookCommand()),
+    ReturnBooks("Return books", new ReturnItemsCommand(ItemType.Book)),
 
-    ReturnMovies("Return movies", new ReturnMoviesCommand()),
+    ReturnMovies("Return movies", new ReturnItemsCommand(ItemType.Movie)),
 
     Quit("Quit", new QuitCommand());
 

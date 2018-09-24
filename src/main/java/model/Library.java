@@ -7,10 +7,12 @@ public class Library {
 
     private Collection<Item> checkedOutItems;
     private Collection<Item> availableItems;
+    private Collection<User> users;
 
-    public Library(Collection<Item> availableItems) {
+    public Library(Collection<Item> availableItems, Collection<User> users) {
         this.checkedOutItems = new ArrayList<>();
         this.availableItems = availableItems;
+        this.users = users;
     }
 
     public Collection<String> getDetails(final ItemType itemType) {

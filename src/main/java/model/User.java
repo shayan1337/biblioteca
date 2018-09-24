@@ -1,7 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class User {
@@ -14,11 +14,19 @@ public class User {
     public User(Username username, Password password) {
         this.username = username;
         this.password = password;
-        checkedOutItems = new ArrayList<>();
+        checkedOutItems = new HashSet<>();
     }
 
     void checkoutItem(Item item) {
         checkedOutItems.add(item);
+    }
+
+    boolean returnItem(Item item) {
+        if(!checkedOutItems.contains(item)) {
+            return false;
+        }
+        checkedOutItems.remove(item);
+        return true;
     }
 
     @Override
