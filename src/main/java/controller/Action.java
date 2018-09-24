@@ -21,6 +21,8 @@ public enum Action {
 
     ReturnMovies("Return movies", new ReturnItemsCommand(ItemType.Movie)),
 
+    Login("Login", new LoginCommand()),
+
     Quit("Quit", new QuitCommand());
 
     private String description;
@@ -35,7 +37,7 @@ public enum Action {
         return description;
     }
 
-    public void perform(Library library, Output output, Input input){
-        action.perform(library, output, input);
+    public void perform(Library library, Output output, Input input, Session session){
+        action.perform(library, output, input, session);
     }
 }

@@ -2,8 +2,10 @@ package controller.commands;
 
 import common.Message;
 import controller.ICommand;
+import controller.Session;
 import model.ItemType;
 import model.Library;
+import model.User;
 import view.Input;
 import view.Output;
 
@@ -16,12 +18,17 @@ public class CheckoutItemsCommand implements ICommand {
     }
 
     @Override
-    public void perform(Library library, Output output, Input input) {
-        output.print(Message.ITEM_CHECKOUT_MESSAGE);
-        if (library.checkoutItem(input.getUserInput(), itemType) == null) {
-            output.print(Message.UNSUCCESSFUL_ITEM_CHECKOUT_MESSAGE);
-        } else {
-            output.print(Message.SUCCESSFUL_ITEM_CHECKOUT_MESSAGE);
+    public void perform(Library library, Output output, Input input, Session session) {
+        User user = session.getUserLoggedIn();
+        if (user == null) {
+            output.print("Log in first!!!");
+            return;
         }
+
+        if (!library.verifyUser(user)) {
+            output.print("Wrong credentials!!!");
+            return;
+        }
+        library.checkoutItem(input.getUserInput(), itemType, user);
     }
 }

@@ -11,7 +11,7 @@ public class Message {
     public static final String UNSUCCESSFUL_ITEM_CHECKOUT_MESSAGE = "That item is not available";
     public static final String SUCCESSFUL_ITEM_RETURN_MESSAGE = "Thank you for returning the item";
     public static final String UNSUCCESSFUL_ITEM_RETURN_MESSAGE = "That is not a valid item to return";
-    public static final String ITEM_RETURN_MESSAGE = "Please enter the item name you want to checkout";
+    public static final String ITEM_RETURN_MESSAGE = "Please enter the item name you want to return";
     public static final String HORIZONTAL_LINE = "-----------------------------------------------------------------------------------";
 
 }

@@ -11,7 +11,7 @@ public class Biblioteca {
 
     public static void main(String[] args) {
 
-        Library library = new Library(getItems());
+        Library library = new Library(getItems(),getUsers());
         LibraryManagementSystem libraryManagementSystem = new LibraryManagementSystem(new Output(), library, new Input());
         libraryManagementSystem.start();
     }
@@ -29,5 +29,12 @@ public class Biblioteca {
         items.add(movie1);
         items.add(movie2);
         return items;
+    }
+
+    static Collection<User> getUsers() {
+        Collection<User> users = new ArrayList<>();
+        users.add(new User(new Username("sayan"),new Password("sayan")));
+        users.add(new User(new Username("messi"), new Password("messi")));
+        return users;
     }
 }

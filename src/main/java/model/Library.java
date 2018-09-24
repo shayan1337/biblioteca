@@ -15,6 +15,15 @@ public class Library {
         this.users = users;
     }
 
+    public boolean verifyUser(User userToBeVerified) {
+        for(User user : users) {
+            if(user.equals(userToBeVerified)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Collection<String> getDetails(final ItemType itemType) {
         Collection<String> itemDetails = new ArrayList<>();
 
@@ -26,7 +35,7 @@ public class Library {
         return itemDetails;
     }
 
-    public Item checkoutItem(String title, ItemType itemType) {
+    public Item checkoutItem(String title, ItemType itemType, User user) {
         Item checkedOutItem = null;
 
         for (Item item : availableItems) {
@@ -34,6 +43,7 @@ public class Library {
                 checkedOutItem = item;
             }
         }
+        user.checkoutItem(checkedOutItem);
         checkedOutItems.add(checkedOutItem);
         availableItems.remove(checkedOutItem);
         return checkedOutItem;

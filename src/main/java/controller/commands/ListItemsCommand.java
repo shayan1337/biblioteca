@@ -1,6 +1,7 @@
 package controller.commands;
 
 import controller.ICommand;
+import controller.Session;
 import model.ItemType;
 import model.Library;
 import view.Input;
@@ -15,7 +16,7 @@ public class ListItemsCommand implements ICommand {
     }
 
     @Override
-    public void perform(Library library, Output output, Input input) {
+    public void perform(Library library, Output output, Input input, Session session) {
         output.print("The list is :");
         output.print(library.getDetails(itemType));
     }

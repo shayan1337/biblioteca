@@ -2,6 +2,7 @@ package controller.commands;
 
 import common.Message;
 import controller.ICommand;
+import controller.Session;
 import model.ItemType;
 import model.Library;
 import view.Input;
@@ -16,9 +17,9 @@ public class ReturnItemsCommand implements ICommand {
     }
 
     @Override
-    public void perform(Library library, Output output, Input input) {
+    public void perform(Library library, Output output, Input input, Session session) {
         output.print(Message.ITEM_RETURN_MESSAGE);
-        if (library.returnItem(input.getUserInput(), ItemType.Movie)) {
+        if (library.returnItem(input.getUserInput(), itemType)) {
             output.print(Message.SUCCESSFUL_ITEM_RETURN_MESSAGE);
         } else {
             output.print(Message.UNSUCCESSFUL_ITEM_RETURN_MESSAGE);

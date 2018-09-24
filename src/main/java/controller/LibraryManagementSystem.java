@@ -1,6 +1,7 @@
 package controller;
 
 import model.Library;
+import model.User;
 import view.Input;
 import view.Output;
 
@@ -12,11 +13,17 @@ public class LibraryManagementSystem {
     private final Output output;
     private final Library library;
     private final Input input;
+    private Session session;
 
     public LibraryManagementSystem(Output output, Library library, Input input) {
         this.output = output;
         this.library = library;
         this.input = input;
+        this.session = new Session();
+    }
+
+    public void setSession(final User user)  {
+        session = new Session(user);
     }
 
     public void printMenu() {
@@ -55,7 +62,7 @@ public class LibraryManagementSystem {
                 printInvalidChoiceMessage();
                 continue;
             }
-            Action.values()[Integer.parseInt(userInput) - 1].perform(library, output, input);
+            Action.values()[Integer.parseInt(userInput) - 1].perform(library, output, input, session);
         } while (Integer.parseInt(userInput) - 1 != Action.valueOf("Quit").ordinal());
     }
 }

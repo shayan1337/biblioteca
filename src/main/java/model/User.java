@@ -18,7 +18,9 @@ public class User {
     }
 
     void checkoutItem(Item item) {
-        checkedOutItems.add(item);
+        if(item != null) {
+            checkedOutItems.add(item);
+        }
     }
 
     boolean returnItem(Item item) {

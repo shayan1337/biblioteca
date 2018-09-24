@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
 
     Library library;
+    User user1, user2;
     Collection<Item> items = new ArrayList<>();
+    Collection<User> users = new ArrayList<>();
     Book book1, book2, book3;
     Movie movie1, movie2, movie3;
 
@@ -26,6 +29,9 @@ public class LibraryTest {
         movie2 = new Movie(new Title("Dunkirk"), new Person("Christopher Nolan"), new Year(2017), new Rating("10"));
         movie3 = new Movie(new Title("The Prestige"), new Person("Christopher Nolan"), new Year(2005), new Rating("10"));
 
+        user1 = new User(new Username("sayan"), new Password("sayan"));
+        user2 = new User(new Username("messi"), new Password("messi"));
+
         items.add(book1);
         items.add(book2);
         items.add(book3);
@@ -34,13 +40,16 @@ public class LibraryTest {
         items.add(movie2);
         items.add(movie3);
 
-        library = new Library(items);
+        users.add(user1);
+        users.add(user2);
+
+        library = new Library(items,users);
     }
 
     @DisplayName("returned collection of book details should equal test collection of book details")
     @Test
     void testGetBookTitles1() {
-        ArrayList<String> testBooks = new ArrayList<>();
+        Collection<String> testBooks = new ArrayList<>();
         testBooks.add("The Pragmatic Programmer\tAndy Hunt\t1999");
         testBooks.add("To Kill A MockingBird\tHarper Lee\t1987");
         testBooks.add("Hamlet\tWilly Boy\t1500");
@@ -50,7 +59,7 @@ public class LibraryTest {
     @DisplayName("returned collection of book details should not equal test collection of book details")
     @Test
     void testGetBookTitles2() {
-        ArrayList<String> testBooks = new ArrayList<>();
+        Collection<String> testBooks = new HashSet<>();
         testBooks.add("To Kill A MockingBird\tHarper Lee\t1987");
         testBooks.add("Hamlet\tWilly Boy\t1500");
         testBooks.add("The Pragmatic Programmer\tAndy Hunt\t1999");
@@ -94,8 +103,6 @@ public class LibraryTest {
         assertFalse(library.returnItem("Hamlet", ItemType.Book));
     }
 
-    // -------------------------------------------------------------------------------------------------------------------
-
     @DisplayName("should be able to checkout movie from library")
     @Test
     void testCheckoutMovie1() {
@@ -131,5 +138,19 @@ public class LibraryTest {
     @Test
     void testReturnMovie3() {
         assertFalse(library.returnItem("Dunkirk", ItemType.Book));
+    }
+
+    @DisplayName("verify if the user has the correct credentials")
+    @Test
+    void testVerifyUser1() {
+        User userToBeVerified = new User(new Username("sayan"), new Password("sayan"));
+        assertTrue(library.verifyUser(userToBeVerified));
+    }
+
+    @DisplayName("verify if the user has the correct credentials")
+    @Test
+    void testVerifyUser2() {
+        User userToBeVerified = new User(new Username("username"), new Password("password"));
+        assertFalse(library.verifyUser(userToBeVerified));
     }
 }
